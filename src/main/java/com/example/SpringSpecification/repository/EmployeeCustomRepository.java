@@ -5,5 +5,5 @@ import com.example.SpringSpecification.entity.Employee;
 import java.util.List;
 
 public interface EmployeeCustomRepository {
-List<Employee> findByFirstnameAndAge(String firstName,Long age);
+List<Employee> findByFirstnameAndAge(String firstName,String lastName ,int age, String email);
 }
