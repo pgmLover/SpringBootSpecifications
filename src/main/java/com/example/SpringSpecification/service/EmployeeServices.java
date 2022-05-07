@@ -11,6 +11,7 @@ import java.util.List;
 @Service
 public class EmployeeServices {
 
+
     @Autowired
     private UserRepository userRepository;
 
@@ -20,6 +21,10 @@ public class EmployeeServices {
 
     public  List<Employee> findAll(){
         return userRepository.findAll();
+    }
+
+    public  List<Employee> findAlls(Specification<Employee> specification){
+        return userRepository.findAll(specification);
     }
 
     public List<Employee>  findAllByAgeAndFirstName(Specification<Employee> specification){
