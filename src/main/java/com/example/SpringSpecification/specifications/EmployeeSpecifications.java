@@ -7,6 +7,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
@@ -29,26 +33,36 @@ public class EmployeeSpecifications implements Specification<Employee>{
   private String lastName;
   private String email;
   private int age;
-
     @Override
     public Predicate toPredicate(Root<Employee> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
 
         List<Predicate> predicates=new ArrayList<>();
+
         if (firstName != null) {
-            predicates.add(criteriaBuilder.like(root.get(Employee_.FIRST_NAME),""+"%d"+ firstName+"%d"));
+            predicates.add(criteriaBuilder.like(root.get(Employee_.FIRST_NAME),"%"+firstName+"%"));
         }
 
         if (lastName != null) {
-            predicates.add(criteriaBuilder.like(root.get(Employee_.LAST_NAME), "%d"+lastName+"%d"));
+            predicates.add(criteriaBuilder.like(root.get(Employee_.LAST_NAME), "%"+lastName+"%"));
         }
 
         if (email != null) {
-            predicates.add(criteriaBuilder.like(root.get(Employee_.EMAIL), "%d"+email+"%d"));
+            predicates.add(criteriaBuilder.like(root.get(Employee_.EMAIL), "%"+email+"%"));
         }
 
         if(age !=0){
             predicates.add(criteriaBuilder.equal(root.get(Employee_.AGE),age));
         }
+//
+//        if (descending)
+//        {
+//           sort = Sort.by(sortBy).descending();
+//        }
+//
+//        if (pageSize!=0)
+//        {
+//            Pageable pageable=PageRequest.of(pageNo,pageSize,sort);
+//        }
 
         return  criteriaBuilder.and(predicates.toArray(new Predicate[0]));
     }
