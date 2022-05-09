@@ -21,19 +21,8 @@ public class UserController {
         return employeeServices.addEmployee(employee);
     }
 
-    @GetMapping("/employee")
-    public List<Employee> getEmployees(){
-        return employeeServices.findAll();
-    }
-
-//    @GetMapping("/employees/{age}/{firstName}")
-//    public List<Employee> getEmployeesByAgeAndFirstNAme(@RequestParam int age,@RequestParam String firstName){
-//        Specification<Employee> specifications=Specification.where(EmployeeSpecifications.hasAgeRequest(age).and(EmployeeSpecifications.likeFirstName(firstName)));
-//        return employeeServices.findAllByAgeAndFirstName(specifications);
-//    }
-
     @GetMapping("/employees")
     public List<Employee> getEmployeesByLastName( EmployeeSpecifications employeeSpecifications){
-        return employeeServices.findAlls(employeeSpecifications);
+        return employeeServices.findAll(employeeSpecifications);
     }
 }

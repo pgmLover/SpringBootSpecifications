@@ -19,19 +19,11 @@ public class EmployeeServices {
         return userRepository.save(employee);
     }
 
-    public  List<Employee> findAll(){
-        return userRepository.findAll();
-    }
 
-    public  List<Employee> findAlls(Specification<Employee> specification){
+
+    public  List<Employee> findAll(Specification<Employee> specification){
         return userRepository.findAll(specification);
     }
 
-    public List<Employee>  findAllByAgeAndFirstName(Specification<Employee> specification){
-        return userRepository.findAll(specification);
-    }
 
-    public List<Employee> findAllByLastName(Specification<Employee> specification){
-        return userRepository.findAll(specification);
-    }
 }

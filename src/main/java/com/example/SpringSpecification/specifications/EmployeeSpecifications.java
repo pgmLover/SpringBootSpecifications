@@ -35,7 +35,7 @@ public class EmployeeSpecifications implements Specification<Employee>{
 
         List<Predicate> predicates=new ArrayList<>();
         if (firstName != null) {
-            predicates.add(criteriaBuilder.like(root.get(Employee_.FIRST_NAME),"%d"+ firstName+"%d"));
+            predicates.add(criteriaBuilder.like(root.get(Employee_.FIRST_NAME),""+"%d"+ firstName+"%d"));
         }
 
         if (lastName != null) {
@@ -53,22 +53,4 @@ public class EmployeeSpecifications implements Specification<Employee>{
         return  criteriaBuilder.and(predicates.toArray(new Predicate[0]));
     }
 }
-//    public static Specification<Employee> likeFirstName(String firstName){
-//        return (((root, query, criteriaBuilder) -> {
-//            return criteriaBuilder.like(root.get("firstName"),"%"+firstName+"%");
-//        }));
-//    }
-//
-//    public  static  Specification<Employee> hasAgeRequest(int age){
-//        return (((root, query, criteriaBuilder) -> {
-//            return criteriaBuilder.equal(root.get("age"),age);
-//        }));
-//    }
-//
-//    public static Specification<Employee> likeLastName(String lastName){
-//        return ((root, query, criteriaBuilder) -> {
-//            return  criteriaBuilder.like(root.get("lastName"),"%"+lastName+"%");
-//        }
-//        );
-//    }
 
